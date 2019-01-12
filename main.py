@@ -57,6 +57,7 @@ def main():
     # 1. 单条插入最慢
     # 2. 多条插入后再提交事务稍快
     # 3. load data最快
+    # 注意：有的系统上面要以\r\n分割行，有的系统要以\n分割行
     for name in templist:
         sql = "load data local infile '{}' into table chinese " \
               "lines terminated by '\\r\\n' ignore 3 lines (content) set nametype={};" \
