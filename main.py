@@ -8,17 +8,17 @@ import config
 import SQLHelper
 
 # 中国人名字
-CNNAMES = './src/Chinese_Names_Corpus（120W）.txt'
+CNNAMES = './Chinese_Names_Corpus/Chinese_Names_Corpus（120W）.txt'
 # 古代中国人名字
-CNANAMES = './src/Ancient_Names_Corpus（25W）.txt'
+CNANAMES = './Chinese_Names_Corpus/Ancient_Names_Corpus（25W）.txt'
 # 中国成语
-CNIDIOM = './src/ChengYu_Corpus（5W）.txt'
+CNIDIOM = './Chinese_Dict_Corpus/ChengYu_Corpus（5W）.txt'
 # 日本人名字
-JPNAMES = './src/Japanese_Names_Corpus（18W）.txt'
+JPNAMES = './Japanese_Names_Corpus/Japanese_Names_Corpus（18W）.txt'
 # 英国人名字
-ENNAMES = './src/English_Names_Corpus（2W）.txt'
+ENNAMES = './English_Names_Corpus/English_Names_Corpus（2W）.txt'
 # 英国人名翻译
-EN2CNNAMES = './src/English_Cn_Name_Corpus（48W）.txt'
+EN2CNNAMES = './English_Names_Corpus/English_Cn_Name_Corpus（48W）.txt'
 
 
 def loaddata(sql, cursor):
