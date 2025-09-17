@@ -1,7 +1,79 @@
+## 数据库介绍
+`names.sql`是本项目的数据库文件，包含了所有的语料数据  
+数据库名为`names`，包含了以下表：
+- `chinese`：中文人名语料库1874887条记录（字段`nametype`表示人名类型，0-常见人名，1-古代人名，2-翻译人名）
+- `english`：英文人名语料库29880条记录
+- `idiom`：中文成语词典50528条记录
+- `japanese`：日文人名语料库183963条记录
+
+详细表结构如下：  
+```txt
+mysql> select
+    ->   table_schema, table_name, engine, table_rows,
+    ->   (data_length+index_length)/1024/1024 AS SIZE_MB
+    -> FROM information_schema.tables WHERE table_schema = 'names';
++--------------+------------+--------+------------+-------------+
+| TABLE_SCHEMA | TABLE_NAME | ENGINE | TABLE_ROWS | SIZE_MB     |
++--------------+------------+--------+------------+-------------+
+| names        | chinese    | InnoDB |    1874887 | 73.59375000 |
+| names        | english    | InnoDB |      29880 |  1.51562500 |
+| names        | idiom      | InnoDB |      50528 |  2.51562500 |
+| names        | japanese   | InnoDB |     183963 |  7.51562500 |
++--------------+------------+--------+------------+-------------+
+4 rows in set (0.001 sec)
+
+mysql> desc names.chinese;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| id       | int         | NO   | PRI | NULL    | auto_increment |
+| content  | varchar(20) | YES  |     | NULL    |                |
+| nametype | int         | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+3 rows in set (0.001 sec)
+
+mysql> desc names.english;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| id      | int         | NO   | PRI | NULL    | auto_increment |
+| content | varchar(25) | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+2 rows in set (0.001 sec)
+
+mysql> desc names.idiom;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| id      | int         | NO   | PRI | NULL    | auto_increment |
+| content | varchar(20) | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+2 rows in set (0.001 sec)
+
+mysql> desc names.english;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| id      | int         | NO   | PRI | NULL    | auto_increment |
+| content | varchar(25) | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+2 rows in set (0.001 sec)
+
+mysql> desc names.japanese;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| id      | int         | NO   | PRI | NULL    | auto_increment |
+| content | varchar(20) | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+2 rows in set (0.001 sec)
+```
+
 ## 解析人名
 基于Python3 环境编写代码，需要创建对应版本的虚拟环境并安装`pymysql`库  
 修改配置文件的名字为`config.py`并改为自己的配置信息  
-输入`python3 main.py`运行代码 
+输入`python3 main.py`运行代码即可把数据导入到数据库中
+
 # 中文人名语料库（Chinese-Names-Corpus）
 业余项目“萌名NameMoe（一个基于语料库技术的取名工具）”的副产品。
 
